@@ -1,4 +1,7 @@
 var body = document.body;
+function applyStyles(element, styles) {
+    Object.assign(element.style, styles);
+}
 function createHeader(header, text) {
     var Header = document.createElement(header);
     Header.textContent = text;
@@ -6,14 +9,16 @@ function createHeader(header, text) {
 }
 function createContainer(Id) {
     var container = document.createElement('div');
-    container.id = Id;
-    container.style.display = 'flex';
-    container.style.height = '100vh';
-    container.style.width = '100vw';
-    container.style.flexDirection = 'column';
-    container.style.backgroundColor = 'lightsteelblue';
-    container.style.justifyContent = 'center';
-    container.style.alignItems = 'center';
+    var ContainerStyle = {
+        display: 'flex',
+        height: '100vh',
+        width: '100vw',
+        flexDirection: 'column',
+        backgroundColor: 'dimgray',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
+    applyStyles(container, ContainerStyle);
     body.appendChild(container);
     return container;
 }
@@ -21,11 +26,14 @@ function createDiv(container, Id, text) {
     var div = document.createElement('div');
     div.id = Id;
     div.textContent = text;
-    div.style.display = 'flex';
-    div.style.flex = '1';
-    div.style.width = '100%';
-    div.style.margin = '5px';
-    div.style.backgroundColor = 'green';
+    var divStyles = {
+        display: 'flex',
+        flex: '1',
+        width: '80%',
+        margin: '5px',
+        backgroundColor: 'tomato',
+    };
+    applyStyles(div, divStyles);
     container.appendChild(div);
 }
 function createButtton(Id, text) {

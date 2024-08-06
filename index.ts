@@ -1,7 +1,13 @@
 const body = document.body;
 
+
 type HeaderTag = "h1" | "h2" | "h3";
 type ID = string;
+
+
+function applyStyles(element: HTMLElement, styles: Partial<CSSStyleDeclaration>){
+    Object.assign(element.style, styles);
+}
 
 function createHeader(header: HeaderTag, text: string){
     const Header = document.createElement(header);
@@ -11,14 +17,17 @@ function createHeader(header: HeaderTag, text: string){
 
 function createContainer(Id: ID): HTMLElement{
     const container= document.createElement('div');
-    container.id = Id;
-    container.style.display = 'flex';
-    container.style.height = '100vh';
-    container.style.width = '100vw';
-    container.style.flexDirection = 'column';
-    container.style.backgroundColor = 'lightsteelblue';
-    container.style.justifyContent = 'center';
-    container.style.alignItems = 'center';
+    const ContainerStyle: Partial<CSSStyleDeclaration> = {
+        display: 'flex',
+        height: '100vh',
+        width: '100vw',
+        flexDirection: 'column',
+        backgroundColor: 'dimgray',
+        justifyContent: 'center',
+        alignItems: 'center',
+    };
+    
+    applyStyles(container, ContainerStyle);
     body.appendChild(container);
 
     return container;
@@ -28,13 +37,15 @@ function createDiv(container: HTMLElement,Id: ID, text: string){
     const div = document.createElement('div');
     div.id = Id;
     div.textContent = text;
-    div.style.display = 'flex';
-    div.style.flex = '1';
-    div.style.width = '100%'
-    div.style.margin = '5px';
-    div.style.backgroundColor = 'green';
+    const divStyles: Partial<CSSStyleDeclaration> = {
+        display: 'flex',
+        flex: '1',
+        width: '80%',
+        margin: '5px',
+        backgroundColor: 'tomato',
+    };
+    applyStyles(div, divStyles);
     container.appendChild(div);
-
 }
 
 function createButtton(Id: ID, text: string){
